@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+	<title>Money Saver</title>
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{/images/slika.png}" />
+	<meta charset="UTF-8"></meta>
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+	<div th:fragment="header" id="logo-title">
+		<img th:src="@{/images/slika.png}" />
+		<h1>Money Saver</h1>
+	</div>
+	<div th:fragment="js">
+		<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	</div>
+</body>
+
+</html>
