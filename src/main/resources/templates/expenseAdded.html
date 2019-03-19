@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+<head th:replace="fragments :: head"></head>
+<body>
+	<div class="container">
+
+		<h4>Unesen trošak:</h4>
+		<h6>Naziv</h6> <br>
+		<p th:text="${expense.name}"> </p>
+		<h6>Iznos</h6> <br>
+		<p th:text="${expense.amount}"> </p>
+		<h6>Vrsta</h6> <br>
+		<p th:text="${expense.expenseType}"> </p>
+
+	</div>
+
+	<div th:replace="fragments :: js"></div>
+</body>
+</html>

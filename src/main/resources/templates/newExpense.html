@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
 <head th:replace="fragments :: head"></head>
 <body>
-	<div class="container" id="cent">
-		<div th:replace="fragments :: header"></div>
+	<div class="container">
 
 		<h4>Unos novog troška:</h4>
-		<form method="POST" th:object="${trosak}">
+		<form method="POST" th:object="${expense}">
+
 
 			<div class="form-group">
-				<label for="naziv">Naziv</label> <br/>
-				<input type="text"
-					class="form-control" th:field="*{naziv}" />
+				<label for="name">Naziv</label> 
+				 <input type="text"	class="form-control" th:field="*{name}" />
 			</div>
 
 
 			<div class="form-group">
-				<label for="iznos">Iznos</label> <br/>
-				<input type="text"
-					class="form-control" th:field="*{iznos}" min="0" placeholder="0.00"/>
+				<label for="amount">Iznos</label>
+				<input type="number" class="form-control" th:field="*{amount}" min="0" placeholder="0.00" />
 			</div>
 
 			<div class="form-group">
-				<label for="vrsta">Vrsta troška</label> <br/>
+				<label for="expenseType">Vrsta troška</label>
 				<select  class="form-control"
-					th:field="*{vrsta}">
+					th:field="*{expenseType}">
 					<option value="">---Odaberite vrijednost---</option>
-					<option th:each="vrstaTroska : ${vrsta}" th:value="${vrstaTroska}"
-						th:text="${vrstaTroska}"></option>
+					  <option th:each="type : ${types}" th:value="${type}"
+						th:text="${type}"></option>
 				</select>
 			</div>
-
-			<button type="submit" class="btn btn-primary">Submit</button>
+			
+			<input type="submit" class="btn btn-primary" value="Pošalji">
 		</form>
 	</div>
 

@@ -3,10 +3,12 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
-	<div class="container" id="cent">
-		<div th:replace="fragments :: header"></div>
+	<div class="container">
+
+		<h1>MoneyApp</h1>
+		
 		<div>
-			<a th:href="@{/troskovi/novo}">Unesi novi trošak</a>
+			<a th:href="@{/expense/newExpense}">Unesi novi trošak</a>
 		</div>
 	</div>
 
