@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+	<div class="container" id="cent">
+		<div th:replace="fragments :: header"></div>
+
+		<h4>Unos novog troška:</h4>
+		<form method="POST" th:object="${trosak}">
+
+			<div class="form-group">
+				<label for="naziv">Naziv</label> <br/>
+				<input type="text"
+					class="form-control" th:field="*{naziv}" />
+			</div>
+
+
+			<div class="form-group">
+				<label for="iznos">Iznos</label> <br/>
+				<input type="text"
+					class="form-control" th:field="*{iznos}" min="0" placeholder="0.00"/>
+			</div>
+
+			<div class="form-group">
+				<label for="vrsta">Vrsta troška</label> <br/>
+				<select  class="form-control"
+					th:field="*{vrsta}">
+					<option value="">---Odaberite vrijednost---</option>
+					<option th:each="vrstaTroska : ${vrsta}" th:value="${vrstaTroska}"
+						th:text="${vrstaTroska}"></option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<div th:replace="fragments :: js"></div>
+</body>
+</html>
