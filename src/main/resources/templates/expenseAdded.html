@@ -14,9 +14,17 @@
 		<p th:text="${expense.amount}"> </p>
 		<h6>Vrsta</h6> <br>
 		<p th:text="${expense.expenseType}"> </p>
+		<br>
+		
+		<button onclick="goBack()">Go Back</button>
 
 	</div>
 
 	<div th:replace="fragments :: js"></div>
+	<script>
+		function goBack() {
+		  window.history.back();
+		}
+	</script>
 </body>
 </html>
