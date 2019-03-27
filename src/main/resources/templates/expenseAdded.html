@@ -7,17 +7,27 @@
 <body>
 	<div class="container">
 
-		<h4>Unesen trošak:</h4>
-		<h6>Naziv</h6> <br>
-		<p th:text="${expense.name}"> </p>
-		<h6>Iznos</h6> <br>
-		<p th:text="${expense.amount}"> </p>
-		<h6>Vrsta</h6> <br>
-		<p th:text="${expense.expenseType}"> </p>
-		<br>
-		
-		<button onclick="goBack()">Go Back</button>
+		<h6>Unesen trošak:</h6>
+		<p>
+			Naziv: <span th:text="${expense.name}"> </span>
+		</p>
+		<p>
+			Iznos: <span th:text="${expense.amount}"> </span>
 
+		</p>
+
+		<p>
+			Vrsta: <span th:text="${expense.expenseType}"> </span>
+
+		</p>
+
+		<p>
+			Total: <span th:text="${total}"></span>
+
+		</p>
+
+		<button class="btn btn-dark" onclick="goBack()">Nazad</button>
+		<a class="btn btn-warning" href="/expense/resetWallet">Reset novčanik</a>
 	</div>
 
 	<div th:replace="fragments :: js"></div>

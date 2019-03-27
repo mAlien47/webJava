@@ -14,12 +14,19 @@
 			<div class="form-group">
 				<label for="name">Naziv</label> 
 				 <input type="text"	class="form-control" th:field="*{name}" />
+				<span class="text-danger" th:if="${#fields.hasErrors('name')}"
+				th:errors="*{name}">
+					Name error
+				</span>
 			</div>
 
 
 			<div class="form-group">
 				<label for="amount">Iznos</label>
-				<input type="number" class="form-control" th:field="*{amount}" min="0" placeholder="0.00" />
+				<input type="number" class="form-control" th:field="*{amount}" step=".01"  />
+				<span class="text-danger" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">
+					Amount error
+				</span>
 			</div>
 
 			<div class="form-group">
@@ -30,6 +37,9 @@
 					  <option th:each="type : ${types}" th:value="${type}"
 						th:text="${type}"></option>
 				</select>
+				<span class="text-danger" th:if="${#fields.hasErrors('expenseType')}" th:errors="*{expenseType}">
+					Expense type error
+				</span>
 			</div>
 			
 			<input type="submit" class="btn btn-primary" value="Pošalji">
