@@ -20,7 +20,7 @@ public class Wallet {
     public BigDecimal getTotal() {
         return expenseList.stream()
                 .map(expense -> expense.getAmount())
-                .reduce((expense, expense2) -> expense.add(expense2))
+                .reduce((e1, e2) -> e1.add(e2))
                 .get();
     }
 }

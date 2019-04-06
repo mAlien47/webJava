@@ -26,15 +26,11 @@
 
 		</p>
 
-		<button class="btn btn-dark" onclick="goBack()">Nazad</button>
+		<a href="/expense/newExpense"><button class="btn btn-dark">Nazad</button></a>
 		<a class="btn btn-warning" href="/expense/resetWallet">Reset novčanik</a>
 	</div>
 
 	<div th:replace="fragments :: js"></div>
-	<script>
-		function goBack() {
-		  window.history.back();
-		}
-	</script>
+
 </body>
 </html>
