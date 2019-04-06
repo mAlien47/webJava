@@ -2,6 +2,7 @@ package hr.java.web.teskera.controllers;
 
 import hr.java.web.teskera.models.Wallet;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import hr.java.web.teskera.models.Expense;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpSession;
 
 @Slf4j

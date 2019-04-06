@@ -18,9 +18,12 @@
 </head>
 
 <body>
-	<div th:fragment="header" id="logo">
-		<img th:src="@{/img/header.jpg}" />
-		<h1>Money Saver</h1>
+	<div th:fragment="logout-btn" id="logo">
+		<h6>Ulogirani ste kao: <span th:text ="${#authentication.getName()}"></span> </h6>
+		<form name="logoutForm" th:action="@{/logout}" method="post">
+			<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+			<input class="btn btn-danger" type="submit" value="Sign Out"/>
+		</form>
 	</div>
 	<div th:fragment="js">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

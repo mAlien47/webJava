@@ -1,27 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head"></head>
 <body>
 
-<h3>Login with Username and Password</h3>
 
-<form name='f' method='POST' th:action="@{/login}">
+<div class="container">
 
-    <div class="card">
-        <div class="card-header">
-            LOGIN
-        </div>
-        <div class="card-body">
-            <label>Username: <input id="username" type='text' name='username' value='' /></label>
-            <label>Password: <input id="password" type='password' name='password'/></label>
-            <input type="submit" class="btn btn-primary" value="Login" />
+    <h3>Login with Username and Password</h3>
+
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <form name='f' method='POST' th:action="@{/login}">
+
+                <div class="card">
+                    <div class="card-header">
+                        LOGIN
+                    </div>
+                    <div class="card-body">
+                        <div class="form-label-group">
+                            <label>Username: </label> <input class="form-control" id="username" type='text'
+                                                             name='username' value=''/>
+                        </div>
+                        <div class="form-label-group">
+                            <label>Password: </label> <input class="form-control" id="password" type='password'
+                                                             name='password'/>
+                        </div>
+                        <input type="submit" class="mt-2 btn btn-primary" value="Login" />
+                    </div>
+                </div>
+
+
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            </form>
         </div>
     </div>
-
-
-    <input type="hidden"  name="_csrf" th:value="${_csrf.token}"/>
-</form>
-
+</div>
 
 <div th:replace="fragments :: js"></div>
 </body>

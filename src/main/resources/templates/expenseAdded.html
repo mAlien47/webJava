@@ -6,6 +6,7 @@
 <head th:replace="fragments :: head"></head>
 <body>
 	<div class="container">
+		<div th:replace="fragments :: logout-btn"></div>
 
 		<h6>Unesen trošak:</h6>
 		<p>
@@ -27,7 +28,9 @@
 		</p>
 
 		<a href="/expense/newExpense"><button class="btn btn-dark">Nazad</button></a>
+		<span sec:authorize="hasRole('ADMIN')">
 		<a class="btn btn-warning" href="/expense/resetWallet">Reset novčanik</a>
+		</span>
 	</div>
 
 	<div th:replace="fragments :: js"></div>
