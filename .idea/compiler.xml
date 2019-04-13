@@ -5,8 +5,8 @@
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="hr.java.web.teskera.moneyapp.moneyapp.main" target="11" />
-      <module name="hr.java.web.teskera.moneyapp.moneyapp.test" target="11" />
+      <module name="moneyapp.main" target="1.10" />
+      <module name="moneyapp.test" target="1.10" />
     </bytecodeTargetLevel>
   </component>
 </project>

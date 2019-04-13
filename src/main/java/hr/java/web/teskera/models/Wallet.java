@@ -2,14 +2,27 @@ package hr.java.web.teskera.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.internal.util.privilegedactions.LoadClass;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 public class Wallet {
+
+    private Long id;
+
+    private LocalDateTime createDate;
+
+    private WalletType type;
+
+    public enum WalletType {
+        CASH,
+        CARD
+    }
 
     private List<Expense> expenseList = new ArrayList<Expense>();
 

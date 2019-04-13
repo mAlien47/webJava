@@ -7,7 +7,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'hr.java.web.teskera.moneyapp'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '10'
 
 configurations {
 	compileOnly {
@@ -22,11 +22,14 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.projectlombok:lombok'
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 
 	implementation ("org.springframework.boot:spring-boot-starter-security")
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	runtimeOnly 'com.h2database:h2'
 
 }

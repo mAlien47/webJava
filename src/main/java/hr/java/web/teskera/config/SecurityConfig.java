@@ -14,9 +14,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    DataSource dataSource;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -43,29 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("Admin")
-                .password(passwordEncoder().encode("adminpass"))
-                .roles("ADMIN", "USER")
-                .and()
-                .withUser("user")
-                .password(passwordEncoder().encode("userpass"))
-                .roles("USER");
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                // ako se koriste defaultni nazivi tablica, ne treba pisat query za username i pass
+                .passwordEncoder(passwordEncoder());
     }
-
-
-    /*
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-             User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }
-    */
 }

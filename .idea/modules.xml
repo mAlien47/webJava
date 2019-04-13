@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hr.java.web.teskera.moneyapp.moneyapp.iml" filepath="$PROJECT_DIR$/.idea/modules/hr.java.web.teskera.moneyapp.moneyapp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hr.java.web.teskera.moneyapp.moneyapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/hr.java.web.teskera.moneyapp.moneyapp.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hr.java.web.teskera.moneyapp.moneyapp.test.iml" filepath="$PROJECT_DIR$/.idea/modules/hr.java.web.teskera.moneyapp.moneyapp.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/moneyapp.iml" filepath="$PROJECT_DIR$/.idea/modules/moneyapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/moneyapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/moneyapp.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/moneyapp.test.iml" filepath="$PROJECT_DIR$/.idea/modules/moneyapp.test.iml" />
     </modules>
   </component>
 </project>
