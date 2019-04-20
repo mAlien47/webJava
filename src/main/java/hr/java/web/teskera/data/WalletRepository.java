@@ -2,12 +2,14 @@ package hr.java.web.teskera.data;
 
 import hr.java.web.teskera.models.Wallet;
 
+import java.util.List;
+
 public interface WalletRepository {
 
-    Iterable<Wallet> findAll();
+    List<Wallet> findAll();
 
     Wallet findOne(String username);
 
-    Wallet save(Wallet wallet, String username);
+    Wallet save(Wallet wallet);
 
 }

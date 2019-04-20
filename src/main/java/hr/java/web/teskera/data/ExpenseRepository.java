@@ -2,11 +2,13 @@ package hr.java.web.teskera.data;
 
 import hr.java.web.teskera.models.Expense;
 
+import java.util.List;
+
 public interface ExpenseRepository {
 
-    Iterable<Expense> findAll();
+    List<Expense> findAll();
 
-    Iterable<Expense> findAllByWalletId(Long id);
+    List<Expense> findAllByWalletId(Long id);
 
     Expense findOne(Long id);
 

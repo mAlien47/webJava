@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -30,7 +31,7 @@ public class JdbcWalletRepository implements WalletRepository {
     }
 
     @Override
-    public Iterable<Wallet> findAll() {
+    public List<Wallet> findAll() {
 
         var wallets = jdbc.query("SELECT * FROM wallet", new BeanPropertyRowMapper(Wallet.class));
 
@@ -43,9 +44,9 @@ public class JdbcWalletRepository implements WalletRepository {
     }
 
     @Override
-    public Wallet save(Wallet wallet, String username) {
+    public Wallet save(Wallet wallet) {
         wallet.setCreateDate(LocalDateTime.now());
-        wallet.setId(saveAndReturnID(wallet, username));
+//        wallet.setId(saveAndReturnID(wallet, username));
 
         return wallet;
     }

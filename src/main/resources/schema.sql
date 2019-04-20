@@ -14,9 +14,8 @@ create table if not exists wallet (
     createDate timestamp not null,
     type varchar(150) not null,
 
-    username varchar(20)
---     users_id bigint,
---     FOREIGN KEY (users_id) REFERENCES users
+    username varchar(20),
+    user_id bigint
 );
 
 create table if not exists expense (

@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -27,12 +28,12 @@ public class JdbcExpenseRepository implements ExpenseRepository {
     }
 
     @Override
-    public Iterable<Expense> findAll() {
+    public List<Expense> findAll() {
         return jdbc.query("SELECT * FROM expense", this::mapRowToExpense);
     }
 
     @Override
-    public Iterable<Expense> findAllByWalletId(Long id) {
+    public List<Expense> findAllByWalletId(Long id) {
         return jdbc.query("SELECT * FROM expense WHERE wallet_id = " + id, this::mapRowToExpense);
     }
 

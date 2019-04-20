@@ -44,7 +44,7 @@ public class ExpenseController {
 				wallet = new Wallet();
 				wallet.setType(Wallet.WalletType.CASH);
 
-				wallet = walletRepository.save(wallet, username);
+				wallet = walletRepository.save(wallet);
 			}
 
 
@@ -69,17 +69,15 @@ public class ExpenseController {
 		var wallet = walletRepository.findOne(getUserName());
 		var walletID = wallet.getId();
 
-		// dodavanje expense u bazu
 		expenseRepository.save(expense, walletID);
 
-		// dodavanje expensea u model
 		model.addAttribute("expense", expense);
 
-		// dohvaćanje iz baze svih troškova i računanje totala
 		var expenseList = new ArrayList<Expense>();
 		expenseRepository.findAllByWalletId(walletID).iterator().forEachRemaining(
 				e -> expenseList.add(e)
 		);
+
 		var total = expenseList.stream().map(e -> e.getAmount()).reduce((e1, e2) -> e1.add(e2)).get();
 
 		model.addAttribute("total", total);
