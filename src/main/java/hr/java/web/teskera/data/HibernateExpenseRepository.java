@@ -56,6 +56,19 @@ public class HibernateExpenseRepository implements ExpenseRepository {
         return expense;
     }
 
+    public Expense update(Expense expense) {
+        var session = (Session) em.getDelegate();
+        session.update(expense);
+        return  expense;
+    }
+
+    @Override
+    public void removeExpense(Long id) {
+        var q = ((Session)em.getDelegate()).createQuery("DELETE FROM Expense WHERE id = ?1");
+        q.setParameter(1, id);
+
+        q.executeUpdate();
+    }
 
     @Override
     public void removeExpensesFromWallet(Long walletID) {

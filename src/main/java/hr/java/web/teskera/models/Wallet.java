@@ -1,5 +1,6 @@
 package hr.java.web.teskera.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +25,8 @@ public class Wallet implements Serializable {
     @Enumerated(EnumType.STRING)
     private WalletType type;
 
-    @OneToMany(mappedBy = "wallet")
+//    @JsonIgnore
+    @OneToMany(mappedBy = "wallet", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Expense> expenses;
 
     private String username;

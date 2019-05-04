@@ -31,19 +31,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
-            .antMatchers("/**")
-            .hasRole("USER")
-            .anyRequest().authenticated()
-            .and()
-        .formLogin()
-            .loginPage("/login")
-            .defaultSuccessUrl("/expense/newExpense", true)
-            .permitAll()
-            .and()
-        .logout()
-            .permitAll();
+//                .authorizeRequests().antMatchers("/h2-console/**").permitAll().and()
+                .authorizeRequests()
+                .antMatchers("/**")
+                .hasRole("USER")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/expense/newExpense", true)
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
+                .and()
+                .csrf().ignoringAntMatchers("/api/**", "/login", "/logout");
 
+        // potrebno isključiti za h2 console
+//        http.csrf().disable();
+//        http.headers().frameOptions().disable();
     }
 
     @Override

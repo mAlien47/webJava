@@ -10,6 +10,11 @@ public interface WalletRepository {
 
     Wallet findOne(String username);
 
+    Wallet findOne(Long id);
+
     Wallet save(Wallet wallet);
 
+    Wallet update(Wallet wallet);
+
+    void delete(Long id);
 }

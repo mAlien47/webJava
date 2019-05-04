@@ -15,4 +15,8 @@ public interface ExpenseRepository {
     Expense save(Expense expense, Long walletID);
 
     void removeExpensesFromWallet(Long walletID);
+
+    void removeExpense(Long id);
+
+    Expense update(Expense expense);
 }

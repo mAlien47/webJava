@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/*
 @Repository
 public class JdbcExpenseRepository implements ExpenseRepository {
 
@@ -56,6 +56,11 @@ public class JdbcExpenseRepository implements ExpenseRepository {
         jdbc.update("DELETE FROM expense WHERE wallet_id = ?", walletID);
     }
 
+    @Override
+    public void removeExpense(Long id) {
+
+    }
+
     private long saveExpense(Expense expense, Long walletID) {
         Map<String, Object> values = new HashMap<>();
         values.put("name", expense.getName());
@@ -77,3 +82,4 @@ public class JdbcExpenseRepository implements ExpenseRepository {
         return expense;
     }
 }
+*/

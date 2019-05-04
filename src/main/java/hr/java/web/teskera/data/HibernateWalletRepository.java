@@ -22,24 +22,43 @@ public class HibernateWalletRepository implements WalletRepository {
 
     @Override
     public List<Wallet> findAll() {
-        return ((Session)em.getDelegate()).createQuery("FROM Wallet").list();
+        return ((Session) em.getDelegate()).createQuery("FROM Wallet").list();
+    }
+
+    @Override
+    public Wallet findOne(Long id) {
+        return (Wallet) ((Session) em.getDelegate()).createQuery("FROM wallet WHERE id = ?1").setParameter(1, id).getSingleResult();
     }
 
     @Override
     public Wallet findOne(String username) {
-        var lista = ((Session)em.getDelegate())
+        var lista = ((Session) em.getDelegate())
                 .createQuery("FROM Wallet WHERE username = ?1")
                 .setParameter(1, username)
                 .list();
 
-        return  (Wallet) lista.get(0);
+        return (Wallet) lista.get(0);
     }
 
     @Override
     public Wallet save(Wallet wallet) {
 
-        ((Session)em.getDelegate()).save(wallet);
+        ((Session) em.getDelegate()).save(wallet);
 
-        return  wallet;
+        return wallet;
+    }
+
+    @Override
+    public void delete(Long id) {
+        var q = ((Session)em.getDelegate()).createQuery("DELETE FROM Wallet WHERE id = ?1");
+        q.setParameter(1, id);
+
+        q.executeUpdate();
+    }
+
+    @Override
+    public Wallet update(Wallet wallet) {
+        ((Session) em.getDelegate()).update(wallet);
+        return wallet;
     }
 }

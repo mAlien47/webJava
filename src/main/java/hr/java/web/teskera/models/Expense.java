@@ -1,5 +1,6 @@
 package hr.java.web.teskera.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.tomcat.jni.Local;
@@ -39,6 +40,7 @@ public class Expense implements Serializable { // serializable nije nužan
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "wallet_id")
+	@JsonIgnore
 	private Wallet wallet;
 
 	@PrePersist
