@@ -1,22 +1,19 @@
 package hr.java.web.teskera.data;
 
 import hr.java.web.teskera.models.Expense;
+import org.springframework.data.repository.CrudRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-public interface ExpenseRepository {
-
-    List<Expense> findAll();
+@Transactional
+public interface ExpenseRepository extends CrudRepository<Expense, Long> {
 
     List<Expense> findAllByWalletId(Long id);
 
-    Expense findOne(Long id);
+    List<Expense> findAllByWallet_Username(String username);
 
-    Expense save(Expense expense, Long walletID);
+    List<Expense> findAllByNameLikeIgnoreCaseAndWallet_Username(String name, String username);
 
-    void removeExpensesFromWallet(Long walletID);
-
-    void removeExpense(Long id);
-
-    Expense update(Expense expense);
+    void deleteByWalletId(Long id);
 }

@@ -38,7 +38,7 @@ public class ExpenseController {
 		String username = getUserName();
 		Wallet wallet;
 		try {
-			wallet = walletRepository.findOne(username);
+			wallet = walletRepository.findByUsername(username);
 		} catch (Exception e) {
 
 				wallet = new Wallet();
@@ -66,10 +66,11 @@ public class ExpenseController {
 			return "newExpense";
 		}
 
-		var wallet = walletRepository.findOne(getUserName());
+		var wallet = walletRepository.findByUsername(getUserName());
 		var walletID = wallet.getId();
 
-		expenseRepository.save(expense, walletID);
+		expense.setWallet(wallet);
+		expenseRepository.save(expense);
 
 		model.addAttribute("expense", expense);
 
@@ -87,11 +88,25 @@ public class ExpenseController {
 	@GetMapping("/resetWallet")
 	public String resetWallet() {
 
-		var walletID = walletRepository.findOne(getUserName()).getId();
+		var walletID = walletRepository.findByUsername(getUserName()).getId();
 
-		expenseRepository.removeExpensesFromWallet(walletID);
+		expenseRepository.deleteByWalletId(walletID);
 
 		log.info("Resetiran wallet.");
 		return "redirect:/expense/newExpense";
+	}
+
+	@GetMapping("/pregled")
+	public String pregled(Model model) {
+		model.addAttribute("expense", new Expense());
+		return "pregled";
+	}
+
+	@PostMapping("/pregled")
+	public String pregled(Expense expense, Model model) {
+		String name = expense.getName();
+		var listaTroskova = expenseRepository.findAllByNameLikeIgnoreCaseAndWallet_Username(name, getUserName());
+		model.addAttribute("listaTroskova", listaTroskova);
+		return "pregled";
 	}
 }

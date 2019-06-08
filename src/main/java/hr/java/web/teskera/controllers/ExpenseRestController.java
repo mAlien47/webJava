@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*
 @RestController
 @RequestMapping(path = "/api/expense", produces = "application/json")
 public class ExpenseRestController {
@@ -55,3 +55,4 @@ public class ExpenseRestController {
         expenseRepository.removeExpense(id);
     }
 }
+*/

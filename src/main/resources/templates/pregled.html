@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments :: head"></head>
+<body>
+<div class="container">
+
+    <form method="POST" th:object="${expense}" th:action="@{/expense/pregled}">
+
+        <div class="form-group">
+            <input th:field="*{name}" th:type="text">
+            <input th:type="submit" th:value="Pretraži">
+        </div>
+
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+    </form>
+        <table class="table">
+            <thead>
+            <th>#</th>
+            <th>Naziv</th>
+            <th>Iznos</th>
+            <th>Vrsta</th>
+            </thead>
+            <tbody>
+            <th:block th:each="row : ${listaTroskova}">
+                <tr>
+                    <td th:text="${row.id}"></td>
+                    <td th:text="${row.name}"></td>
+                    <td th:text="${row.amount}"></td>
+                    <td th:text="${row.expenseType}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+</div>
+</body>
+</html>

@@ -11,7 +11,7 @@ create table if not exists authorities (
 
 create table if not exists wallet (
     id identity,
-    createDate timestamp not null,
+    create_date timestamp not null,
     type varchar(150) not null,
 
     username varchar(20),
@@ -20,10 +20,10 @@ create table if not exists wallet (
 
 create table if not exists expense (
     id identity ,
-    createDate timestamp not null,
+    create_date timestamp not null,
     name VARCHAR(50) not null,
     amount DECIMAL not null,
-    expenseType VARCHAR(150) not null,
+    expense_type VARCHAR(150) not null,
 
     wallet_id bigint,
     FOREIGN KEY (wallet_id) REFERENCES wallet
