@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-/*
+
 @RestController
 @RequestMapping(path = "/api/wallet", produces = "application/json")
 public class WalletRestController {
@@ -28,9 +28,12 @@ public class WalletRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Wallet> findOne(@PathVariable Long id) {
-        var wallet = walletRepository.findOne(id);
+        var wallet = walletRepository.findById(id);
 
-        return new ResponseEntity<>(wallet, HttpStatus.OK);
+        if (wallet.isPresent())
+            return new ResponseEntity<>(wallet.get(), HttpStatus.OK);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @PostMapping
@@ -41,14 +44,13 @@ public class WalletRestController {
 
     @PutMapping
     public Wallet update(@RequestBody Wallet wallet) {
-        return walletRepository.update(wallet);
+        return walletRepository.save(wallet);
     }
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id) {
-        walletRepository.delete(id);
+        walletRepository.deleteById(id);
     }
 
 }
-*/

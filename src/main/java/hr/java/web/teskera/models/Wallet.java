@@ -42,4 +42,14 @@ public class Wallet implements Serializable {
         CASH,
         CARD
     }
+
+    @Override
+    public String toString() {
+        return "Wallet{" +
+                "id=" + id +
+                ", createDate=" + createDate +
+                ", type=" + type +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }

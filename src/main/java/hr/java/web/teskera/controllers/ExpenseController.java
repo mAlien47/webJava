@@ -4,6 +4,7 @@ import hr.java.web.teskera.data.ExpenseRepository;
 import hr.java.web.teskera.data.WalletRepository;
 import hr.java.web.teskera.models.Wallet;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -85,6 +87,7 @@ public class ExpenseController {
 		return "expenseAdded";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/resetWallet")
 	public String resetWallet() {
 
@@ -105,7 +108,7 @@ public class ExpenseController {
 	@PostMapping("/pregled")
 	public String pregled(Expense expense, Model model) {
 		String name = expense.getName();
-		var listaTroskova = expenseRepository.findAllByNameLikeIgnoreCaseAndWallet_Username(name, getUserName());
+		List<Expense> listaTroskova = expenseRepository.findAllByNameContainingIgnoreCaseAndWallet_Username(name, getUserName());
 		model.addAttribute("listaTroskova", listaTroskova);
 		return "pregled";
 	}

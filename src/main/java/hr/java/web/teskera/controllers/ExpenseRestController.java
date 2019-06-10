@@ -5,11 +5,12 @@ import hr.java.web.teskera.data.WalletRepository;
 import hr.java.web.teskera.models.Expense;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-/*
+
 @RestController
 @RequestMapping(path = "/api/expense", produces = "application/json")
 public class ExpenseRestController {
@@ -22,37 +23,36 @@ public class ExpenseRestController {
         this.expenseRepository = expenseRepository;
     }
 
-    @GetMapping
-    public List<Expense> getAll() {
-        return  expenseRepository.findAll();
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Expense> findOne(@PathVariable Long id) {
-        var expense = expenseRepository.findOne(id);
+        var expense = expenseRepository.findById(id);
 
-        if (expense != null)
-            return new ResponseEntity<>(expense, HttpStatus.OK);
+        if (expense.isPresent())
+            return new ResponseEntity<>(expense.get(), HttpStatus.OK);
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping(path = "/{id}", consumes = "application/json")
-    public Expense save (@RequestBody Expense expense, @PathVariable Long walletID) {
-//        Long walletID = walletRepository.findOne(SecurityContextHolder.getContext().getAuthentication().getName()).getId();
-        return expenseRepository.save(expense, walletID);
+    public Expense save (@RequestBody Expense expense) {
+
+
+        var wallet = walletRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        expense.setWallet(wallet);
+
+        return expenseRepository.save(expense);
     }
 
     @PutMapping//("/{id}")
     public Expense update(@RequestBody Expense expense) {
-        return expenseRepository.update(expense);
+        return expenseRepository.save(expense);
     }
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete (@PathVariable Long id) {
-        expenseRepository.removeExpense(id);
+        expenseRepository.deleteById(id);
     }
 }
-*/

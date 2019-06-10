@@ -1,3 +1,8 @@
+
+drop table if exists users;
+drop table if exists expense;
+drop table if exists wallet;
+
 create table if not exists users (
     id identity,
     username varchar(20) not null,
