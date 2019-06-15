@@ -8,28 +8,28 @@
 	<div class="container">
 		<div th:replace="fragments :: logout-btn"></div>
 
-		<h6>Unesen trošak:</h6>
+		<h6 th:text="#{msg.expenseAdded}"></h6>
 		<p>
-			Naziv: <span th:text="${expense.name}"> </span>
+			<span th:text="#{msg.expense.name}"></span>: <span th:text="${expense.name}"> </span>
 		</p>
 		<p>
-			Iznos: <span th:text="${expense.amount}"> </span>
-
-		</p>
-
-		<p>
-			Vrsta: <span th:text="${expense.expenseType}"> </span>
+			<span th:text="#{msg.expense.amount}"></span> <span th:text="${expense.amount}"> </span>
 
 		</p>
 
 		<p>
-			Total: <span th:text="${total}"></span>
+			<span th:text="#{msg.expense.expenseType}"></span> <span th:text="${expense.expenseType}"> </span>
 
 		</p>
 
-		<a href="/expense/newExpense"><button class="btn btn-dark">Nazad</button></a>
+		<p>
+			<span th:text="#{msg.total}"></span> <span th:text="${total}"></span>
+
+		</p>
+
+		<a href="/expense/newExpense"><button class="btn btn-dark" th:text="#{msg.back}">Nazad</button></a>
 		<span sec:authorize="hasRole('ADMIN')">
-		<a class="btn btn-warning" href="/expense/resetWallet">Reset novčanik</a>
+		<a class="btn btn-warning" href="/expense/resetWallet" th:text="#{msg.resetWallet}">Reset novčanik</a>
 		</span>
 	</div>
 

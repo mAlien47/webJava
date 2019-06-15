@@ -8,12 +8,12 @@
 	<div class="container">
 		<div th:replace="fragments :: logout-btn"></div>
 
-		<h4>Unos novog troška:</h4>
+		<h4 th:text="#{msg.newExpense}"></h4>
 		<form method="POST" th:object="${expense}" th:action="@{/expense/newExpense}">
 
 
 			<div class="form-group">
-				<label for="name">Naziv</label> 
+				<label for="name" th:text="#{msg.expense.name}"></label>
 				 <input type="text"	class="form-control" th:field="*{name}" />
 				<span class="text-danger" th:if="${#fields.hasErrors('name')}"
 				th:errors="*{name}">
@@ -23,7 +23,7 @@
 
 
 			<div class="form-group">
-				<label for="amount">Iznos</label>
+				<label for="amount" th:text="#{msg.expense.amount}"></label>
 				<input type="number" class="form-control" th:field="*{amount}" step=".01"  />
 				<span class="text-danger" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">
 					Amount error
@@ -31,12 +31,12 @@
 			</div>
 
 			<div class="form-group">
-				<label for="expenseType">Vrsta troška</label>
+				<label for="expenseType" th:text="#{msg.expense.expenseType}"></label>
 				<select  class="form-control"
 					th:field="*{expenseType}">
 					<option value="">---Odaberite vrijednost---</option>
 					  <option th:each="type : ${types}" th:value="${type}"
-						th:text="${type}"></option>
+						th:text="#{msg.expense.expenseType. + ${type}}"></option>
 				</select>
 				<span class="text-danger" th:if="${#fields.hasErrors('expenseType')}" th:errors="*{expenseType}">
 					Expense type error
@@ -45,7 +45,7 @@
 
 			<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 			
-			<input type="submit" class="btn btn-primary" value="Pošalji">
+			<input type="submit" class="btn btn-primary" th:value="#{msg.send}">
 		</form>
 	</div>
 

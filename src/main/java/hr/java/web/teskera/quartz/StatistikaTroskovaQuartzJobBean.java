@@ -29,9 +29,9 @@ public class StatistikaTroskovaQuartzJobBean extends QuartzJobBean {
         troskoviPoGrupi.forEach(
                 (k, v) -> {
                     System.out.println(k.toString() +
-                            " SUM " + v.stream().map(e -> e.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add) + " " +
-                            " MIN" + v.stream().map(Expense::getAmount).min(Comparator.naturalOrder()).get() + " " +
-                            " MAX" + v.stream().map(Expense::getAmount).max(Comparator.naturalOrder()).get()
+                            " SUM: " + v.stream().map(e -> e.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add) + " " +
+                            " MIN: " + v.stream().map(Expense::getAmount).min(Comparator.naturalOrder()).get() + " " +
+                            " MAX: " + v.stream().map(Expense::getAmount).max(Comparator.naturalOrder()).get()
 
                             );
                 }
